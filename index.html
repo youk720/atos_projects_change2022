@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css" rel="stylesheet">
+  <title>紲星あかりver_ATOS</title>
+</head>
+<body>
+
+<div class="main">
+    <!-- タブ別  -->
+      <ul class="nav nav-tabs">
+        <li class="active"><a href="#AutoSound" data-toggle="tab">自動放送:手動設定用</a></li>
+        <!-- <li><a href="#time_table" data-toggle="tab">ダイヤ放送用</a></li> -->
+        <li><a href="#StartBell" data-toggle="tab">発車ベル設定</a></li>
+      </ul>
+    
+      <br>
+      <br>
+    
+      <!-- タブ内 -->
+      <div class="tab-content">
+        <!-- 自動放送関連タブ -->
+        <div class="tab-pane active" id="AutoSound">
+          <p>製作中</p>
+          <table>
+              <tr>
+                <td>
+                    <select id="bansen"></select>
+                    <p>時間帯
+                      <br>
+                      <label><input type="radio" name="mor_honj" value="0">朝</label>
+                      <label><input type="radio" name="mor_honj" value="1" checked>日中・夜</label>
+                    </p>
+                    <p>列車・電車
+                      <br>
+                    <label><input type="radio" name="type_1" value="0" checked>列車</label>
+                    <label><input type="radio" name="type_1" value="1">電車</label>
+                    </p>
+                    <p>時間<br>
+                      <select id="time_h"></select>
+                      <select id="time_m"></select>
+                      <!-- <br>
+                      <button id="time_a_submit" class="btn btn-primary text-center"><strong>決定</strong></button> -->
+                      <script type="text/javascript">
+                      let x;
+                      for(x=0;x<=23;x++){
+                        $("#time_h").append($("<option>").text(x));
+                      }
+                      for(x=0;x<=59;x++){
+                        $("#time_m").append($("<option>").text(x));
+                      }
+                      </script>
+                    </p>
+
+                    <p>路線名<br>
+                    <select id="line">
+                    </select>
+                    <br>
+                    <label><input type="radio" name="line_2" value="2">直通</label>
+                    <label><input type="radio" name="line_2" value="3">周り</label>
+                    <label><input type="radio" name="line_2" value="1">経由</label>
+                    <label><input type="radio" name="line_2" value="0">無し(有)</label>
+                    <label><input type="radio" name="line_2" value="4" checked>無</label>
+                    </p>
+                    <p>種別<br>
+                    <select id="kind"></select>
+                    </p>
+                    <p>愛称
+                      <br>
+                      <label><input type="checkbox" id="train_name_tf">案内</label>
+                    <select id="train_name"></select>
+                    <br>
+                    <label><input type="checkbox" id="train_no_tf">号数指定</label>
+                    <br>
+                    <button id="train_no_submit" class="btn btn-primary text-center"><strong>決定</strong></button>
+                    <br>
+                    <select id="train_no_hnd"></select>
+                    <select id="train_no_ten"></select>
+                    <select id="train_no_one"></select>
+
+                    </p>
+                    <p>行先設定
+                      <br>
+                      <label><input type="radio" name="bound_set" value="0" checked>単独(連続)</label>
+                      <label><input type="radio" name="bound_set" value="1">単独(非連続)</label>
+                      <br>
+                      <label><input type="radio" name="bound_set" value="2">2つ(行き分け)</label>
+                      <label><input type="radio" name="bound_set" value="3">2つ(山手用)</label>
+                      
+                    </p>
+                  </td>
+                  <td>
+                      <p>行先
+                          <br>
+                      <select id="destination"></select></p>
+                      <p>行先2
+                          <br>
+                      <select id="destination_2"></select></p>
+                    <p>ドア/両数
+                        <br>
+                        <label><input type="checkbox" id="door_car" checked>両数案内</label>
+                    <br>
+                    <select id="doors">
+                      <option value="140">1ﾄﾞｱ</option>
+                      <option value="141">2ﾄﾞｱ</option>
+                      <option value="142">3ﾄﾞｱ</option>
+                      <option value="143">4ﾄﾞｱ</option>
+                      <option value="144" selected>ドア案内ﾅｼ</option>
+                      </select>
+                    <select id="cars"></select></p>
+                    <label><input type="checkbox" id="green_car">グリーン車付き</label>
+                    <p>増解結<br>
+                    <select id="add_tr_a">
+                      <option value="0">増結</option>
+                      <option value="1">切り離し</option>
+                      <option value="2" selected>なし</option>
+                    </select>
+                    <br>
+                    <select id="add_tr_b">
+                      <option value="42">前より</option>
+                      <option value="43">後ろ寄り</option>
+                    </select>
+                    <br>
+                    <select id="add_tr_c"></select>
+                    </p>
+                    <p>駅指定<br>
+                    <select id="stop_sta"></select>
+                    </p>
+                    <p>接近喚起<br>
+                    <select id="seafty"></select>
+                    </p>
+                  </td>
+
+                  <td>
+                    <p>接近メロディ
+                    <select id="arr_m"></select></p>
+                    <p>放送種別(接近用)<br>
+                      <select id="type_2">
+                        <option value="0">通常</option>
+                        <option value="1">始発</option>
+                        <option value="2">簡易</option>
+                        <option value="3">種別</option>
+                        <option value="4">通過</option>
+                        <option value="5">当駅止</option>
+                        <option value="6">折返</option>
+                        <!-- <option value="7">折返(種別)</option> -->
+                      </select>
+                    </p>
+                      <p>放送種別(予告用)<br>
+                      <label><input type="radio" name="type_3" value="0" checked>到着前</label>
+                      <label><input type="radio" name="type_3" value="1">停車中</label></p>
+                      <p>連呼用:駅指定<br>
+                        <select id="call_sta"></select>
+                        <input type="text" id="call_sta_manual">
+                        <select id="call_sta_2">
+                          <option value="0">通常</option>
+                          <option value="1">終着</option>
+                          <option value="2">禁煙</option>
+                        </select>
+                      </p>
+                      <br>
+
+                    <button id="info" class="btn btn-success btn-lg"><strong>予告</strong></button>
+                    <button id="arriv" class="btn btn-danger btn-lg"><strong>接近</strong></button>
+                    <br>
+                    <!-- <br> -->
+                    <button id="atos_start" class="btn btn-primary btn-lg"><strong>再生</strong></button>
+                    <button id="atos_stop" class="btn btn-dark btn-lg"><strong>停止</strong></button>
+                    <br>
+                    <button id="clear" class="btn btn-secondary btn-lg">textarea削除</button>
+                    <button class="btn btn-primary btn-lg" onclick="sta_call()"><strong>駅名連呼</strong></button>
+                </td>
+                <td>
+                <p>再生順入力</p>
+                <textarea id="playlist_out"></textarea>
+                <p>固定再生音源</p>
+                <textarea id="ply_self"></textarea>
+                <p>全パーツ用意</p>
+                <select size="5" id="all_parts" ondblclick="add_playlist()"></select>
+                </td>
+              </tr>
+              <!-- <tr>
+                <td>
+                  
+                </td>
+              </tr> -->
+              
+            </table>
+      
+
+      <br>
+      <script type="text/javascript" src="atos_main.js"></script>
+      <script type="text/javascript" src="atos_sounds.js"></script>
+      <script type="text/javascript" src="atos_bound.js"></script>
+      <script type="text/javascript" src="atos_pd.js"></script>
+      <script type="text/javascript" src="atos_variation.js"></script>
+  </div>
+  <!-- csvダイヤ放送タブ -->
+  <!-- <div class="tab-pane" id="time_table">
+    <input type="file" id="dia_set">
+    <p id="ted"></p>
+    <textarea id="tee" cols="321" rows="196"></textarea>
+    <div id="ted"></div>
+    <script type="text/javascript" src="dia_atos.js"></script>
+    <input type="file" name="melo_select">
+  </div> -->
+  
+  <!-- メロディ設定タブ -->
+  <div class="tab-pane center-block" id="StartBell">
+      <div class="container-fluid">
+        
+        <!-- ゆくも ドア閉め 生成コード: <NUMK VAL="1" COUNTER="''バン/セ'ン/" MODE="AaE">。 -->
+        <table>
+          <tr>
+          <td>
+            <!-- <p>メロディ選択<br>※自作以外のテイチク音源⇨<br><a href="https://youtu.be/0W4gbZSbaJU">harmony Sakura*
+      さんのテイチク再現音源</a>より -->
+            <br>
+              <!-- <select id="melo_select"> -->
+            </select></p>
+            <p id="melo_title">メロディ音源手動入力</p>
+            <textarea id="melo_input" size='20'></textarea>
+            
+            <br>
+            <button id="custam_sw" style='font-size:10px;' class="btn btn btn-primary text-center"><strong> 決定</strong></button>
+            <button id="melo_url_del" style='font-size:10px;' class="btn btn btn-danger text-center"><strong>削除</strong></button>
+            <br>
+
+            <br>
+          </td>
+            <!-- <audio class="melo" id="melo" preload="auto">
+              <source type="audio/mp3">
+              </audio> -->
+            <td>
+            <button id="on" style='font-size:38px;' class="btn btn-danger btn-lg  text-center"><strong> ON </strong></button>
+            <br>
+            <button id="off" style='font-size:30px;' class="btn btn-success btn-lg"><strong>OFF</strong></button>
+            <br>
+            <button id="first_off" style='font-size:25px;' class="btn btn-success btn-lg"><strong>Start</strong></button>
+            <br>
+
+            <button id="smoking" class="btn btn-primary" onclick="smoking()">禁煙放送</button>
+            <br>
+            <div class="text-info"><strong>
+            <span>再生時間/メロディ合計時間</span>
+            <br>
+            <span id="time"></span></strong></div>
+            </td>
+
+          
+
+
+          <td>
+            <label><input type="checkbox" id="noiz_check">ノイズ</label>
+                <br>
+                <label><input type="radio" name="sw_mode" value="0" checked>通常</label>
+                <label><input type="radio" name="sw_mode" value="1">立川式</label>
+                <label><input type="radio" name="sw_mode" value="2">ノン被り式</label>
+                <br>
+                <label><input type="radio" name="on_mode" value="0" checked>普通</label>
+                <label><input type="radio" name="on_mode" value="1">放送ストップ</label>
+                <br>
+                <label><input type="radio" name="atos_door" value="0" checked>○番線</label>
+                <label><input type="radio" name="atos_door" value="2">路線名付き</label>
+                <label><input type="radio" name="atos_door" value="3">種別発車</label>
+                <label><input type="radio" name="atos_door" value="4">仙台式</label>
+                <br>
+                <label><input type="checkbox" id="kkkm">駆け込み防止</label>
+                
+          </td>
+
+          <td>
+              <p id="mv_value" value="">メロディ用ボリューム</p>
+              <input type="range" id="melo_volume" value="50" min="0" max="100">
+              <p id="smoking_value" value="">ATOSボリューム</p>
+              <input type="range" id="smoking_volume" value="50" min="0" max="100">
+              <!-- <p id="dov_value" value="">ドア閉め放送用ボリューム</p>
+              <input type="range" id="door_volume" value="50" min="0" max="100"> -->
+              
+          </td>
+          </tr>
+        </table>
+        <script type="text/javascript" src="melo.js"></script>
+      </div>
+    </div>
+  </div>
+</div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
